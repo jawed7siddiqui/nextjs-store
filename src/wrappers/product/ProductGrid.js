@@ -64,53 +64,82 @@ const ProductGrid = ({
 }) => {
 
 
-//   axios({
-//     url:  process.env.REACT_APP_API_URL ,
-//     method: 'post',
-//     data:{   
-//   query: `
-//   query {
-//     productFindAllByStore(store_id: 1) {
-//         id,
-//         store_id,
-//         category_id,
-//         title,
-//         short_description,
-//         long_description,
-//         html_content,
-//         price,
-//         discount,
-//         country_of_origin,
-//         medias {
-//             id,
-//             src
-//         },
-//         attributes {
-//             name,
-//             value
-//         },
-//         faqs {
-//             id,
-//             question,
-//             answer,
-//         },
-//         stock,
-//         status,
-//         created_at,
-//         updated_at
-//     }
-// } `    
-//   },
-//   headers: { Authorization: 'Bearer '+window.localStorage.getItem('accessToken') }
-//     }).then((result) => {      
-//       console.log("productList====>"+result)
+  const [productList, setProductList] = useState([]);
 
-//   })
+  useEffect(() => {
+
+  axios({
+    url:  process.env.REACT_APP_API_URL ,
+    method: 'post',
+    data:{   
+  query: `
+  query {
+    productFindAll {
+        id,
+        store_id,
+        category_id,
+        title,
+        short_description,
+        long_description,
+        html_content,
+        price,
+        discount,
+        country_of_origin,
+        medias {
+            id,
+            src
+        },
+        attributes {
+            name,
+            value
+        },
+        faqs {
+            id,
+            question,
+            answer,
+        },
+        stock,
+        status,
+        created_at,
+        updated_at
+    }
+} `    
+  },
+    }).then((result) => {      
+  
+
+      // setProductList(result.data.data.productFindAll)
+
+      var arrData = result.data.data.productFindAll;
+
+  
+      for (let i = 0; i < arrData.length; i++) {
+
+        arrData[i].name = arrData[i].title;
+        arrData[i].image = [
+          "/assets/img/product/fashion/9.jpg",
+          "/assets/img/product/fashion/7.jpg",         
+      ];
+
+         arrData[i].stock = 4;
+
+      }
+
+      // useEffect(() => {
+      setProductList(arrData);
+      //  });
+      console.log("productList====>")
+      console.log(productList)
+
+  })
+
+}, []);
+
   console.log(j7Product)
 
   return (
     <Fragment>
-      {j7Product.map(product => {
+      {productList.map(product => {
         return (
           <ProductGridSingle
             sliderClassName={sliderClassName}
@@ -156,7 +185,7 @@ ProductGrid.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    j7Product: getProducts(
+    productList: getProducts(
       state.productData.products,
       ownProps.category,
       ownProps.type,
