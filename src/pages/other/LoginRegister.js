@@ -83,28 +83,30 @@ const LoginRegister = ({ location }) => {
       query: `
 
       mutation {
-        register(data: {
-                  name: "${formData.name}",
-                  phone: "9142627909",
-                  email: "${formData.email}",
-                  username: "${formData.name}",
-                  password: "${formData.password}",
+        userCreate(data: {
+            role_id: 7,
+            store_id: 1,
+            name: "${formData.name}",
+            phone: "9142627909",
+            email: "${formData.email}",
+            username: "${formData.name}",
+            password: "${formData.password}",            
+            address: "N/A",
         }) {
-            token
-            user {
-                id
-                role_id
-                name
-                phone
-                email
-                username
-                status
-                created_at
-                updated_at
-            }
+            id,
+            role_id,
+            store_id,
+            name,
+            phone,
+            email,
+            username,
+            address,
+            status,
+            created_at,
+            updated_at
         }
     }
-   
+ 
         `
     })
     .then(res => {
@@ -112,9 +114,10 @@ const LoginRegister = ({ location }) => {
         //
       } else {
 
-        window.localStorage.setItem('accessToken', res.data.data.register.token)
+        console.log(res)
+       // window.localStorage.setItem('accessToken', res.data.data.register.token)
     
-        window.localStorage.setItem('userData', JSON.stringify(res.data.data.register.user))
+        window.localStorage.setItem('userData', JSON.stringify(res.data.data.userCreate))
      
         console.log(res)
 
