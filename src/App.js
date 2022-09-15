@@ -140,7 +140,7 @@ const App = (props) => {
               <Switch>
                 <Route
                   exact
-                  path={process.env.PUBLIC_URL + "/"}
+                  path={process.env.PUBLIC_URL + "/:slug"}
                   component={HomeFashion}
                 />
 

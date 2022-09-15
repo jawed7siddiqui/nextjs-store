@@ -1,6 +1,7 @@
 import React, { Fragment,useState,useEffect } from "react";
 
 import axios from 'axios'
+import { useParams } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -63,7 +64,11 @@ const ProductGrid = ({
   spaceBottomClass
 }) => {
 
+  const { slug } = useParams();
 
+  const userData = JSON.parse(window.localStorage.getItem('userData'))
+
+  
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
@@ -73,8 +78,8 @@ const ProductGrid = ({
     method: 'post',
     data:{   
   query: `
-  query {
-    productFindAll {
+ query {
+    productFindAllBySiteName(site_name: "${slug}") {
         id,
         store_id,
         category_id,
@@ -85,10 +90,7 @@ const ProductGrid = ({
         price,
         discount,
         country_of_origin,
-        medias {
-            id,
-            src
-        },
+        image,
         attributes {
             name,
             value
@@ -110,20 +112,26 @@ const ProductGrid = ({
 
       // setProductList(result.data.data.productFindAll)
 
-      var arrData = result.data.data.productFindAll;
+      var arrData = result.data.data.productFindAllBySiteName;
 
-  
+      if(arrData){
       for (let i = 0; i < arrData.length; i++) {
 
         arrData[i].name = arrData[i].title;
-        arrData[i].image = [
-          "/assets/img/product/fashion/9.jpg",
-          "/assets/img/product/fashion/7.jpg",         
-      ];
 
-         arrData[i].stock = 4;
+    //     if(arrData[i].image == false){
+    //     arrData[i].image = [
+    //       "/assets/img/product/fashion/9.jpg",
+    //       "/assets/img/product/fashion/7.jpg",         
+    //   ];
+    // }
+
+        //  arrData[i].stock = 4;
 
       }
+    }else{
+      arrData = []
+    }
 
       // useEffect(() => {
       setProductList(arrData);
@@ -135,7 +143,7 @@ const ProductGrid = ({
 
 }, []);
 
-  console.log(j7Product)
+  console.log("URL=====>"+process.env.REACT_APP_MEDIA_URL)
 
   return (
     <Fragment>

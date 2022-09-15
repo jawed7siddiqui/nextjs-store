@@ -5,8 +5,13 @@ import HeroSliderOne from "../../wrappers/hero-slider/HeroSliderOne";
 import FeatureIcon from "../../wrappers/feature-icon/FeatureIcon";
 import TabProduct from "../../wrappers/product/TabProduct";
 import BlogFeatured from "../../wrappers/blog-featured/BlogFeatured";
+import { useParams } from "react-router-dom";
 
 const HomeFashion = () => {
+
+  const { slug } = useParams();
+  
+
   return (
     <Fragment>
       <MetaTags>
