@@ -119,14 +119,14 @@ const ProductGrid = ({
 
         arrData[i].name = arrData[i].title;
 
-    //     if(arrData[i].image == false){
-    //     arrData[i].image = [
-    //       "/assets/img/product/fashion/9.jpg",
-    //       "/assets/img/product/fashion/7.jpg",         
-    //   ];
-    // }
+        if(arrData[i].image == false){
+        arrData[i].image = [
+          "/uploads/8f87f620-35ad-11ed-bb9c-7722f46c35cf-9.jpg",
+      ];
+         arrData[i].stock = 4;
 
-        //  arrData[i].stock = 4;
+    }
+
 
       }
     }else{
