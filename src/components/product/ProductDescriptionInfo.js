@@ -28,9 +28,13 @@ const ProductDescriptionInfo = ({
   const [selectedProductSize, setSelectedProductSize] = useState(
     product.variation ? product.variation[0].size[0].name : ""
   );
-  const [productStock, setProductStock] = useState(
-    product.variation ? product.variation[0].size[0].stock : product.stock
-  );
+
+  // const [productStock, setProductStock] = useState(
+  //   product.variation ? product.variation[0].size[0].stock : product.stock
+  // );
+
+  const [productStock, setProductStock] = useState(10);
+
   const [quantityCount, setQuantityCount] = useState(1);
 
   const productCartQty = getProductCartQuantity(
