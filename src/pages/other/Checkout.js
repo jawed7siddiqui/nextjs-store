@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { Fragment } from "react";
+import React, { Fragment,useState } from "react";
 import { Link } from "react-router-dom";
 import MetaTags from "react-meta-tags";
 import { connect } from "react-redux";
@@ -11,6 +11,20 @@ import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 const Checkout = ({ location, cartItems, currency }) => {
   const { pathname } = location;
   let cartTotalPrice = 0;
+
+  const [formData, setFormData] = useState({
+    name: "",
+    store_id: "",
+    email: "",
+    password: "",
+    user_id: "",
+    firstName: "",
+    lastName: "",
+    city: "",
+    zip: "",
+    address: "",
+    
+  });
 
   return (
     <Fragment>
@@ -36,18 +50,19 @@ const Checkout = ({ location, cartItems, currency }) => {
                   <div className="billing-info-wrap">
                     <h3>Billing Details</h3>
                     <div className="row">
-                      <div className="col-lg-6 col-md-6">
+                      <div className="col-lg-12">
                         <div className="billing-info mb-20">
-                          <label>First Name</label>
-                          <input type="text" />
+                          <label>Name</label>
+                          <input type="text"                          
+                          value={formData.name}
+                          onChange={(event) =>
+                            setFormData({ ...formData, name: event.target.value })
+                          }
+
+                          />
                         </div>
                       </div>
-                      <div className="col-lg-6 col-md-6">
-                        <div className="billing-info mb-20">
-                          <label>Last Name</label>
-                          <input type="text" />
-                        </div>
-                      </div>
+                 
                       <div className="col-lg-12">
                         <div className="billing-info mb-20">
                           <label>Company Name</label>
