@@ -121,7 +121,7 @@ const ProductGrid = ({
 
         if(arrData[i].image == false){
         arrData[i].image = [
-          "/uploads/8f87f620-35ad-11ed-bb9c-7722f46c35cf-9.jpg",
+          "/uploads/14a1e040-3cdf-11ed-959a-8132cd8f116c-9.jpg",
       ];
          arrData[i].stock = 4;
 
