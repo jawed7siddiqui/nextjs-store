@@ -101,6 +101,8 @@ const About = lazy(() => import("./pages/other/About"));
 const Contact = lazy(() => import("./pages/other/Contact"));
 const MyAccount = lazy(() => import("./pages/other/MyAccount"));
 const LoginRegister = lazy(() => import("./pages/other/LoginRegister"));
+const Orders = lazy(() => import("./pages/other/Orders"));
+const Profile = lazy(() => import("./pages/other/Profile"));
 
 const Cart = lazy(() => import("./pages/other/Cart"));
 const Wishlist = lazy(() => import("./pages/other/Wishlist"));
@@ -116,8 +118,8 @@ const App = (props) => {
         languages: {
           en: require("./translations/english.json"),
           fn: require("./translations/french.json"),
-          de: require("./translations/germany.json")
-        }
+          de: require("./translations/germany.json"),
+        },
       })
     );
   });
@@ -396,6 +398,14 @@ const App = (props) => {
                   component={MyAccount}
                 />
                 <Route
+                  path={process.env.PUBLIC_URL + "/Orders"}
+                  component={Orders}
+                />
+                <Route
+                  path={process.env.PUBLIC_URL + "/Profile"}
+                  component={Profile}
+                />
+                <Route
                   path={process.env.PUBLIC_URL + "/login-register"}
                   component={LoginRegister}
                 />
@@ -433,7 +443,7 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  dispatch: PropTypes.func
+  dispatch: PropTypes.func,
 };
 
 export default connect()(multilanguage(App));
