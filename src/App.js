@@ -25,7 +25,7 @@ const Profile = lazy(() => import("./pages/other/Profile"));
 const Cart = lazy(() => import("./pages/other/Cart"));
 const Wishlist = lazy(() => import("./pages/other/Wishlist"));
 const Compare = lazy(() => import("./pages/other/Compare"));
-const Checkout = lazy(() => import("./pages/other/Checkout"));
+const Checkout = lazy(() => import("./pages/other/Checkout/Checkout"));
 
 const NotFound = lazy(() => import("./pages/other/NotFound"));
 
@@ -63,7 +63,6 @@ const App = (props) => {
                   path={process.env.PUBLIC_URL + "/app/:slug"}
                   component={HomeFashion}
                 />
-
 
                 {/*/!* Shop pages *!/*/}
                 <Route
@@ -115,7 +114,6 @@ const App = (props) => {
                   path={process.env.PUBLIC_URL + "/checkout"}
                   component={Checkout}
                 />
-
 
                 <Route exact component={NotFound} />
               </Switch>
