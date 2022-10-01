@@ -65,6 +65,7 @@
     ]
   },
   "devDependencies": {
+    "prettier": "^2.7.1",
     "redux-devtools-extension": "^2.13.8",
     "sass": "^1.29.0"
   }
