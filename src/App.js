@@ -21,6 +21,8 @@ const Contact = lazy(() => import("./pages/other/Contact"));
 const MyAccount = lazy(() => import("./pages/other/MyAccount"));
 const Orders = lazy(() => import("./pages/other/Orders"));
 const Profile = lazy(() => import("./pages/other/Profile"));
+const Login = lazy(() => import("./pages/auth/Login"));
+const Register = lazy(() => import("./pages/auth/Register/Index"));
 
 const Cart = lazy(() => import("./pages/other/Cart"));
 const Wishlist = lazy(() => import("./pages/other/Wishlist"));
@@ -58,6 +60,21 @@ const App = (props) => {
               }
             >
               <Switch>
+                {/*Auth pages*/}
+
+                <Route
+                  exact
+                  path={process.env.PUBLIC_URL + "/login"}
+                  component={Login}
+                />
+                <Route
+                  exact
+                  path={process.env.PUBLIC_URL + "/register"}
+                  component={Register}
+                />
+
+                {/*...*/}
+
                 <Route
                   exact
                   path={process.env.PUBLIC_URL + "/app/:slug"}

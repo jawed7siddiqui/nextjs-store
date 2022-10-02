@@ -7,8 +7,6 @@ import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import { getDiscountPrice } from "../../../helpers/product";
 import LayoutOne from "../../../layouts/LayoutOne";
 import Breadcrumb from "../../../wrappers/breadcrumb/Breadcrumb";
-import { useToasts } from "react-toast-notifications";
-import axios from "axios";
 import CheckoutController from "./Checkout.controller";
 import useInputsForm from "./useInputsForm";
 
@@ -50,45 +48,16 @@ const Checkout = ({ location, cartItems, currency }) => {
                     <h3>Billing Details</h3>
                     <div className="row">
                       <div className="col-lg-12">
-                        {/*<div className="billing-info mb-20">*/}
-                        {/*  <label>Name</label>*/}
-                        {/*  <input*/}
-                        {/*    type="text"*/}
-                        {/*    value={formData.name}*/}
-                        {/*    onChange={(event) =>*/}
-                        {/*      setFormData({*/}
-                        {/*        ...formData,*/}
-                        {/*        name: event.target.value,*/}
-                        {/*      })*/}
-                        {/*    }*/}
-                        {/*  />*/}
-                        {/*</div>*/}
                         {customInput({ title: "Name", name: "name" })}
                       </div>
 
                       <div className="col-lg-12">
-                        {/*<div className="billing-info mb-20">*/}
-                        {/*  <label>Company Name</label>*/}
-                        {/*  <input type="text" />*/}
-                        {/*</div>*/}
                         {customInput({
                           title: "Company Name",
                           name: "companyName",
                         })}
                       </div>
                       <div className="col-lg-12">
-                        {/*<div className="billing-select mb-20">*/}
-                        {/*  <label>Country</label>*/}
-                        {/*  <select>*/}
-                        {/*    <option>Select a country</option>*/}
-                        {/*    <option>Azerbaijan</option>*/}
-                        {/*    <option>Bahamas</option>*/}
-                        {/*    <option>Bahrain</option>*/}
-                        {/*    <option>Bangladesh</option>*/}
-                        {/*    <option>Barbados</option>*/}
-                        {/*  </select>*/}
-                        {/*</div>*/}
-
                         {customInput({
                           title: "Country",
                           name: "country",
@@ -103,19 +72,6 @@ const Checkout = ({ location, cartItems, currency }) => {
                         })}
                       </div>
                       <div className="col-lg-12">
-                        {/*<div className="billing-info mb-20">*/}
-                        {/*  <label>Street Address</label>*/}
-                        {/*  <input*/}
-                        {/*    className="billing-address"*/}
-                        {/*    placeholder="House number and street name"*/}
-                        {/*    type="text"*/}
-                        {/*  />*/}
-                        {/*  <input*/}
-                        {/*    placeholder="Apartment, suite, unit etc."*/}
-                        {/*    type="text"*/}
-                        {/*  />*/}
-                        {/*</div>*/}
-
                         {customInput({
                           title: "Street Address",
                           inputArray: [
@@ -128,55 +84,33 @@ const Checkout = ({ location, cartItems, currency }) => {
                               placeholder: "Apartment, suite, unit etc.",
                             },
                           ],
-                          // name: "companyName",
                         })}
                       </div>
                       <div className="col-lg-12">
-                        {/*<div className="billing-info mb-20">*/}
-                        {/*  <label>Town / City</label>*/}
-                        {/*  <input type="text" />*/}
-                        {/*</div>*/}
                         {customInput({
                           title: "Town / City",
                           name: "city",
                         })}
                       </div>
                       <div className="col-lg-6 col-md-6">
-                        {/*<div className="billing-info mb-20">*/}
-                        {/*  <label>State / County</label>*/}
-                        {/*  <input type="text" />*/}
-                        {/*</div>*/}
                         {customInput({
                           title: "State / County",
                           name: "state",
                         })}
                       </div>
                       <div className="col-lg-6 col-md-6">
-                        {/*<div className="billing-info mb-20">*/}
-                        {/*  <label>Postcode / ZIP</label>*/}
-                        {/*  <input type="text" />*/}
-                        {/*</div>*/}
-
                         {customInput({
                           title: "Postcode / ZIP",
                           name: "postcode",
                         })}
                       </div>
                       <div className="col-lg-6 col-md-6">
-                        {/*<div className="billing-info mb-20">*/}
-                        {/*  <label>Phone</label>*/}
-                        {/*  <input type="text" />*/}
-                        {/*</div>*/}
                         {customInput({
                           title: "Phone",
                           name: "phone",
                         })}
                       </div>
                       <div className="col-lg-6 col-md-6">
-                        {/*<div className="billing-info mb-20">*/}
-                        {/*  <label>Email Address</label>*/}
-                        {/*  <input type="text" />*/}
-                        {/*</div>*/}
                         {customInput({
                           title: "Email Address",
                           name: "email",
@@ -184,22 +118,10 @@ const Checkout = ({ location, cartItems, currency }) => {
                       </div>
                     </div>
 
-                    {/*<div className="additional-info-wrap">*/}
-                    {/*  <h4>Additional information</h4>*/}
-                    {/*  <div className="additional-info">*/}
-                    {/*    <label>Order notes</label>*/}
-                    {/*    <textarea*/}
-                    {/*      placeholder="Notes about your order, e.g. special notes for delivery. "*/}
-                    {/*      name="message"*/}
-                    {/*      defaultValue={""}*/}
-                    {/*    />*/}
-                    {/*  </div>*/}
-                    {/*</div>*/}
-
                     {customInput({
                       title: "Additional information",
                       subTitle: "Order notes",
-                      type: "textArea",
+                      inputType: "textArea",
                       placeholder:
                         "Notes about your order, e.g. special notes for delivery.",
                       name: "message",

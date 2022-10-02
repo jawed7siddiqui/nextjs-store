@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const useInputsForm = (stateArray) => {
+const useInputsForm = (stateArray, options) => {
   const stateArray2 = useState();
   const handleChange = (event) => {
     stateArray
@@ -17,40 +17,60 @@ const useInputsForm = (stateArray) => {
           };
         });
     console.log(stateArray2[0]);
+    // eslint-disable-next-line no-unused-expressions
+    options && options?.onChange && options?.onChange(event);
   };
 
   const customInput = ({
-    type = "input",
+    inputType = "input",
+    type = "text",
+
     title,
     name,
     listArray,
     subTitle,
     placeholder,
     inputArray,
+    error,
+    required,
   }) => {
     if (listArray) {
-      type = "dropDown";
+      inputType = "dropDown";
     }
     if (inputArray) {
       console.log(inputArray);
-      type = "inputArray";
+      inputType = "inputArray";
     }
     let Component;
 
-    switch (type) {
+    const InputComponent = (
+      <div className="billing-info mb-20">
+        <label>
+          {title}
+          {required ? <span style={{ color: "red" }}> *</span> : <></>}
+        </label>
+        {options?.errors && options?.errors?.[name] && (
+          <label style={{ color: "grey", marginLeft: "5px" }}>
+            {options?.errors[name]}
+          </label>
+        )}
+        <input
+          type={type}
+          value={stateArray?.[0]?.[name] || stateArray?.[0]?.[name]}
+          name={name && name}
+          onChange={handleChange}
+          placeholder={placeholder && placeholder}
+          error={options?.errors?.[name]}
+          style={
+            Boolean(options?.errors?.[name]) ? { border: "1px solid red" } : {}
+          }
+        />
+      </div>
+    );
+
+    switch (inputType) {
       case "input":
-        Component = (
-          <div className="billing-info mb-20">
-            <label>{title}</label>
-            <input
-              type="text"
-              value={stateArray?.[0]?.[name] || stateArray?.[0]?.[name]}
-              name={name && name}
-              onChange={handleChange}
-              placeholder={placeholder && placeholder}
-            />
-          </div>
-        );
+        Component = InputComponent;
 
         break;
 
@@ -111,23 +131,12 @@ const useInputsForm = (stateArray) => {
         break;
 
       default:
-        Component = (
-          <div className="billing-info mb-20">
-            <label>{title}</label>
-            <input
-              type="text"
-              value={stateArray?.[0]?.[name] || stateArray?.[0]?.[name]}
-              name={name && name}
-              onChange={handleChange}
-              placeholder={placeholder && placeholder}
-            />
-          </div>
-        );
+        Component = InputComponent;
 
         break;
     }
 
-    return Component;
+    return <div className={"billing-info-wrap"}>{Component}</div>;
   };
   return {
     state: stateArray?.[0] || stateArray2?.[0],

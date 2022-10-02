@@ -29,42 +29,76 @@ const IconGroup = ({
       className={`header-right-wrap ${iconWhiteClass ? iconWhiteClass : ""}`}
     >
       <div className="same-style account-setting d-none d-lg-block">
-        <button
-          className="account-setting-active"
-          onClick={(e) => handleClick(e)}
-        >
-          <h5
-            style={{
-              width: "7rem",
-            }}
+        <div className={"same-style"} style={{ display: "flex" }}>
+          <button
+            className="account-setting-active"
+            onClick={(e) => handleClick(e)}
           >
-            {" "}
-            My Account
-          </h5>
-          {/* <i className="pe-7s-user" /> */}
-        </button>
-        <div className="account-dropdown">
-          <ul>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/my-account"}>
-                my account
-              </Link>
-            </li>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/orders"}>Orders</Link>
-            </li>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/profile"}>Profile</Link>
-            </li>
-            {/* <li>
-              <Link to={process.env.PUBLIC_URL + "/login-register"}>Login</Link>
-            </li> */}
-            {/* <li>
-              <Link to={process.env.PUBLIC_URL + "/login-register"}>
-                Register
-              </Link>
-            </li> */}
-          </ul>
+            <h5
+              style={{
+                width: "7rem",
+              }}
+            >
+              {" "}
+              My Account
+            </h5>
+            {/* <i className="pe-7s-user" /> */}
+          </button>
+          <button
+            className="account-setting-active"
+            onClick={(e) => handleClick(e)}
+          >
+            <h5
+              style={{
+                width: "7rem",
+              }}
+            >
+              <Link to={process.env.PUBLIC_URL + "/login"}> Login</Link>
+            </h5>
+            {/* <i className="pe-7s-user" /> */}
+          </button>
+          <button
+            className="account-setting-active"
+            onClick={(e) => handleClick(e)}
+          >
+            <h5
+              style={{
+                width: "7rem",
+              }}
+            >
+              <Link to={process.env.PUBLIC_URL + "/register"}> Register</Link>
+            </h5>
+            {/* <i className="pe-7s-user" /> */}
+          </button>
+          {/*<Link to={process.env.PUBLIC_URL + "/login-register"}>Login</Link>*/}
+
+          {/*<Link to={process.env.PUBLIC_URL + "/login-register"}>*/}
+          {/*  Register*/}
+          {/*</Link>*/}
+          {/*</div>*/}
+          <div className="account-dropdown">
+            <ul>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/my-account"}>
+                  my account
+                </Link>
+              </li>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/orders"}>Orders</Link>
+              </li>
+              <li>
+                <Link to={process.env.PUBLIC_URL + "/profile"}>Profile</Link>
+              </li>
+              {/*<li>*/}
+              {/*  <Link to={process.env.PUBLIC_URL + "/login-register"}>Login</Link>*/}
+              {/*</li>*/}
+              {/*<li>*/}
+              {/*  <Link to={process.env.PUBLIC_URL + "/login-register"}>*/}
+              {/*    Register*/}
+              {/*  </Link>*/}
+              {/*</li>*/}
+            </ul>
+          </div>
         </div>
       </div>
       <div className="same-style header-search d-none d-lg-block">
