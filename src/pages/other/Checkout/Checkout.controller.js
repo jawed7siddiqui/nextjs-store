@@ -4,9 +4,12 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { useToasts } from "react-toast-notifications";
 
 import qs from "qs";
+import { deleteAllFromCart } from "../../../redux/actions/cartActions";
+import { useDispatch } from "react-redux";
 const CheckoutController = (cartItems) => {
   const history = useHistory();
   const { addToast } = useToasts();
+  const dispatch = useDispatch();
 
   const onSubmit = (value) => {
     const products = cartItems?.map((elem) => {
@@ -85,6 +88,7 @@ const CheckoutController = (cartItems) => {
         });
         setTimeout(() => {
           history.push("/app/dgty");
+          dispatch(deleteAllFromCart());
         }, 3500);
       })
       .catch((err) => {
