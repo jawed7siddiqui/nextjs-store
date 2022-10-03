@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.7.0",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@mui/icons-material": "^5.10.6",
@@ -12,6 +13,7 @@
     "bootstrap": "4.6.0",
     "formik": "^2.2.9",
     "google-maps-react": "^2.0.2",
+    "graphql": "^16.6.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-app-polyfill": "^1.0.4",

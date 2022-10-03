@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const useInputsForm = (stateArray, options) => {
   const stateArray2 = useState();
+  useEffect(() => {
+    console.log("default", options?.defaultValue);
+    options?.defaultValue && stateArray2[1](options.defaultValue);
+  }, []);
   const handleChange = (event) => {
     stateArray
       ? stateArray[1]((prevState) => {
@@ -56,7 +60,7 @@ const useInputsForm = (stateArray, options) => {
         )}
         <input
           type={type}
-          value={stateArray?.[0]?.[name] || stateArray?.[0]?.[name]}
+          value={stateArray?.[0]?.[name] || stateArray2?.[0]?.[name]}
           name={name && name}
           onChange={handleChange}
           placeholder={placeholder && placeholder}

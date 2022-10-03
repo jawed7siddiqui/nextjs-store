@@ -1,11 +1,12 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import MainWrapper from "../../../components/wrapper/MainWrapper";
 import useInputsForm from "../../other/Checkout/useInputsForm";
 import { Box } from "@mui/material";
 import Button from "../../../components/Button";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import RegisterController from "./Register.controller";
 
 const Register = () => {
   const { slug } = useParams();
@@ -33,6 +34,7 @@ const Register = () => {
     }),
 
     onSubmit: (values) => {
+      onRegister();
       alert(JSON.stringify(values, null, 2));
     },
   });
@@ -41,6 +43,8 @@ const Register = () => {
     onChange: formik.handleChange,
     errors: formik.errors,
   });
+
+  const { onRegister } = RegisterController({ state });
   console.log(formik.errors);
   return (
     <MainWrapper title={"Login"} content={"Login page"}>
@@ -75,11 +79,28 @@ const Register = () => {
             type: "password",
           })}
           {customInput({ name: "address", title: "Address" })}
-          <Button
-            // disabled={formik.errors}
-            text={"Login"}
-            type={"submit"}
-          />
+          <Box sx={{ display: "flex" }}>
+            <Button
+              // disabled={formik.errors}
+              text={"Register"}
+              type={"submit"}
+            />
+            <Link
+              to={process.env.PUBLIC_URL + "/login"}
+              style={{
+                color: "#555252",
+                cursor: "pointer",
+                display: "flex",
+                textDecoration: "none",
+                margin: "auto 5px auto auto",
+                "&:hover": {
+                  color: "#a749ff",
+                },
+              }}
+            >
+              Already registered?
+            </Link>
+          </Box>
         </Box>
       </form>
     </MainWrapper>

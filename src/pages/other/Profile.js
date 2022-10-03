@@ -17,19 +17,17 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
+import MainWrapper from "../../components/wrapper/MainWrapper";
 
 const Profile = ({ location }) => {
   const { pathname } = location;
 
   return (
-    <Fragment>
-      <MetaTags>
-        <title>Flone | Profile</title>
-        <meta
-          name="description"
-          content="Compare page of flone react minimalist eCommerce template."
-        />
-      </MetaTags>
+    <MainWrapper
+      title={"Flone | Profile"}
+      content={"Compare page of flone react minimalist eCommerce template."}
+      authenticated
+    >
       <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
       <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
         Profile
@@ -153,7 +151,7 @@ const Profile = ({ location }) => {
           </Container>
         </>
       </LayoutOne>
-    </Fragment>
+    </MainWrapper>
   );
 };
 

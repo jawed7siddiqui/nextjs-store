@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import MenuCart from "./sub-components/MenuCart";
 import { deleteFromCart } from "../../redux/actions/cartActions";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 const IconGroup = ({
   currency,
@@ -12,9 +13,13 @@ const IconGroup = ({
   compareData,
   deleteFromCart,
   iconWhiteClass,
+  userData,
 }) => {
   const handleClick = (e) => {
-    e.currentTarget.nextSibling.classList.toggle("active");
+    if (userData?.email) {
+      // eslint-disable-next-line no-unused-expressions
+      e.currentTarget.nextSibling?.classList?.toggle("active");
+    }
   };
 
   const triggerMobileMenu = () => {
@@ -23,53 +28,71 @@ const IconGroup = ({
     );
     offcanvasMobileMenu.classList.add("active");
   };
-
+  const history = useHistory();
+  console.log(history.location.pathname);
   return (
     <div
       className={`header-right-wrap ${iconWhiteClass ? iconWhiteClass : ""}`}
     >
       <div className="same-style account-setting d-none d-lg-block">
         <div className={"same-style"} style={{ display: "flex" }}>
-          <button
-            className="account-setting-active"
-            onClick={(e) => handleClick(e)}
-          >
-            <h5
-              style={{
-                width: "7rem",
-              }}
+          {userData?.email ? (
+            <button
+              className="account-setting-active"
+              onClick={(e) => handleClick(e)}
             >
-              {" "}
-              My Account
-            </h5>
-            {/* <i className="pe-7s-user" /> */}
-          </button>
-          <button
-            className="account-setting-active"
-            onClick={(e) => handleClick(e)}
-          >
-            <h5
-              style={{
-                width: "7rem",
-              }}
-            >
-              <Link to={process.env.PUBLIC_URL + "/login"}> Login</Link>
-            </h5>
-            {/* <i className="pe-7s-user" /> */}
-          </button>
-          <button
-            className="account-setting-active"
-            onClick={(e) => handleClick(e)}
-          >
-            <h5
-              style={{
-                width: "7rem",
-              }}
-            >
-              <Link to={process.env.PUBLIC_URL + "/register"}> Register</Link>
-            </h5>
-            {/* <i className="pe-7s-user" /> */}
-          </button>
+              <h5
+                style={{
+                  width: "7rem",
+                  lineHeight: "15px",
+                }}
+              >
+                My Account {userData.email}
+              </h5>
+              {/* <i className="pe-7s-user" /> */}
+            </button>
+          ) : (
+            <>
+              <button
+                // className="account-setting-active"
+                onClick={(e) => handleClick(e)}
+              >
+                <h5>
+                  <Link
+                    to={process.env.PUBLIC_URL + "/login"}
+                    style={
+                      history.location.pathname === "/login"
+                        ? { color: "#6610f2 " }
+                        : {}
+                    }
+                  >
+                    {" "}
+                    Login
+                  </Link>
+                </h5>
+                {/* <i className="pe-7s-user" /> */}
+              </button>
+              <button
+                // className="account-setting-active"
+                onClick={(e) => handleClick(e)}
+              >
+                <h5>
+                  <Link
+                    to={process.env.PUBLIC_URL + "/register"}
+                    style={
+                      history.location.pathname === "/register"
+                        ? { color: "#6610f2 " }
+                        : {}
+                    }
+                  >
+                    {" "}
+                    Register
+                  </Link>
+                </h5>
+                {/* <i className="pe-7s-user" /> */}
+              </button>
+            </>
+          )}
           {/*<Link to={process.env.PUBLIC_URL + "/login-register"}>Login</Link>*/}
 
           {/*<Link to={process.env.PUBLIC_URL + "/login-register"}>*/}
@@ -179,6 +202,7 @@ const mapStateToProps = (state) => {
     cartData: state.cartData,
     wishlistData: state.wishlistData,
     compareData: state.compareData,
+    userData: state.userData,
   };
 };
 
